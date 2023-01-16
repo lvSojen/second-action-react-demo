@@ -18,7 +18,9 @@ jobs:
         node-version: 12
 
     - name: Install dependencies
-      run: npm i
+      run: |
+        npm i
+        npm run build
 
     - name: Build and deploy
       uses: JamesIves/github-pages-deploy-action@v4
