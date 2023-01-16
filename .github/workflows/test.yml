@@ -17,3 +17,12 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test
+
+
+      - name: Build and deploy
+        uses: JamesIves/github-pages-deploy-action@4
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        with:
+          BRANCH: gh-pages
+          FOLDER: build
