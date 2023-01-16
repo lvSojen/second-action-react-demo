@@ -4,28 +4,58 @@ on:
     branches:
       - master
 jobs:
-  test:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout (Get code)
-        uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Install dependencies and Run Build
-        run: |
-          npm ci
-          npm run build
-      - name: Run tests
-        run: npm test
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+    - name: Install dependencies and build
+      run: |
+        npm ci
+        npm run build
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: dist
 
 
-      - name: Build and deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_KEY }}
-          BRANCH: gh-pages
-          FOLDER: dist
+
+# name: Deploy to GitHub Pages
+# on:
+#   push:
+#     branches:
+#       - master
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout (Get code)
+#         uses: actions/checkout@v3
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 16
+#       - name: Install dependencies and Run Build
+#         run: |
+#           npm ci
+#           npm run build
+#       - name: Run tests
+#         run: npm test
+
+
+#       - name: Build and deploy
+#         uses: JamesIves/github-pages-deploy-action@v4
+#         env:
+#           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+#         with:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_KEY }}
+#           BRANCH: gh-pages
+#           FOLDER: dist
