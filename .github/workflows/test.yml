@@ -17,6 +17,7 @@ jobs:
       run: |
         npm ci
         npm run build
+        npm install --save-dev gh-pages
         npm run deploy
 
     # - name: Deploy to GitHub Pages
