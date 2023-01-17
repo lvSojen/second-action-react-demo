@@ -1,7 +1,6 @@
 {
-  "homepage": "https://lvsojen.github.io/second-action-react-demo/",
   "name": "02-basic-example",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
