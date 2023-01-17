@@ -13,12 +13,11 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 14
-    - name: Install dependencies and build
+    - name: Install dependencies
       run: |
         npm ci
-        npm run build
-        npm install --save-dev gh-pages
-        npm run deploy
+    - name: Run Tests
+        npm test
 
     # - name: Deploy to GitHub Pages
     #   uses: JamesIves/github-pages-deploy-action@v4

@@ -1,11 +1,9 @@
 {
-  "homepage": "https://lvsojen.github.io/second-action-react-demo/",
   "name": "02-basic-example",
-  "private": false,
+  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
