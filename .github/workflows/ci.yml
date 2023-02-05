@@ -21,3 +21,21 @@ jobs:
         # run tests
       - name: Run tests
         run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        # download the code using actions/checkout version 3
+        uses: actions/checkout@v3
+        # install Nodejs version 16 on the github action
+      - name: Install Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+      - name: Install dependencies
+        # install exact dependencies in the package json
+        run: npm ci
+      - name: Build project
+        # build the project
+        run: echo "Deploying ..."
