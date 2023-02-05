@@ -17,3 +17,4 @@ jobs:
         uses: npm ci
         # run tests
       - name: Run tests
+        uses: npm test
