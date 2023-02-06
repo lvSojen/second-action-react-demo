@@ -1,0 +1,12 @@
+name: Test Project
+on:
+  workflow_dispatch:
+    inputs:
+      parameter:
+        description: My Parameter
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Github context
+        run: echo "${{ toJSON(github) }}"
